@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>website kita berdua</title>
+  <link href="https://fonts.googleapis.com/css2?<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cerita Cinta Kita</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(#0f0f1a, #1c1c2b);
+      color: white;
+      overflow-x: hidden;
+    }
+    header, footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ff69b4;
+    }
+    main {
+      padding: 20px;
+    }
+    .gallery {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      max-width: 600px;
+      margin: 30px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+    }
+    .gallery img {
+      width: 100%;
+      display: none;
+      transition: opacity 0.5s ease;
+    }
+    .gallery img.active {
+      display: block;
+      opacity: 1;
+    }
+    .falling {
+      position: fixed;
+      top: -50px;
+      font-size: 30px;
+      animation: fall 6s linear infinite;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+    .typewriter {
+      font-family: 'Pacifico', cursive;
+      font-size: 22px;
+      white-space: pre-wrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+      animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: center;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: white; }
+    }
+    .running-text {
+      width: 100%;
+      background: #ff69b4;
+      overflow: hidden;
+      color: white;
+      font-family: 'Pacifico', cursive;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+    .running-text span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: moveText 15s linear infinite;
+    }
+    @keyframes moveText {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+    #musicBtn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ff69b4;
+      border: none;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>💖WEBSITE KITA 💖</h1>
+</header>
+
+<div class="running-text">
+  <span>"Bersamamu, semua terasa indah dan penuh warna..."</span>
+</div>
+
+<main>
+ 
+
+  <div id="typewriter" class="typewriter"></div>
+</main>
+
+
+<div id="falling-container"></div>
+
+<button id="musicBtn">🔈</button>
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/26/audio_b4c71a4b4c.mp3?filename=love-117010.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Animasi Bunga/Hati Jatuh
+setInterval(() => {
+  const fall = document.createElement('div');
+  fall.classList.add('falling');
+  fall.style.left = Math.random() * window.innerWidth + 'px';
+  fall.innerHTML = Math.random() > 0.5 ? '🌸' : '❤️';
+  document.getElementById('falling-container').appendChild(fall);
+  setTimeout(() => fall.remove(), 6000);
+}, 500);
+
+// Auto Slide Galeri
+let current = 0;
+const images = document.querySelectorAll('.gallery img');
+
+setInterval(() => {
+  images[current].classList.remove('active');
+  current = (current + 1) % images.length;
+  images[current].classList.add('active');
+}, 4000);
+
+// Typing Effect
+const txt = "Dari senyuman pertama hingga janji abadi, perjalanan kita penuh warna. Terima kasih telah menjadi cahaya dalam hidupku.";
+let idx = 0;
+function typeWriter() {
+  if (idx < txt.length) {
+    document.getElementById('typewriter').innerHTML += txt.charAt(idx);
+    idx++;
+    setTimeout(typeWriter, 50);
+  }
+}
+typeWriter();
+
+// Music Control
+const music = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+let isPlaying = false;
+
+musicBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    music.pause();
+    musicBtn.innerHTML = '🔈';
+  } else {
+    music.play();
+    musicBtn.innerHTML = '🔊';
+  }
+  isPlaying = !isPlaying;
+});
+
+// Auto Play Music Saat Masuk (Opsional)
+window.addEventListener('load', () => {
+  music.play().catch(() => {});
+  isPlaying = true;
+  musicBtn.innerHTML = '🔊';
+});
+</script>
+
+</body>
+</html>
+ 
+  <style>
+    /* ===== Variables & Reset ===== */
+    :root {
+      --bg: #1a1a1a;
+      --sec-bg: rgba(0,0,0,0.7);
+      --text: #f0f0f0;
+      --accent: #ff6f91;
+      --accent-dark: #e91e63;
+      --transition: 0.3s ease;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); line-height:1.5; }
+    img { display:block; max-width:100%; height:auto; }
+    a { color: var(--accent); text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--accent-dark); }
+
+    /* ===== Navigation ===== */
+    nav {
+      position: sticky; top:0; background: var(--sec-bg); backdrop-filter: blur(6px);
+      display:flex; justify-content:center; gap:1.5rem; padding:1rem 0; z-index:100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    nav a {
+      font-weight:600; font-size:0.9rem;
+      text-transform: uppercase; letter-spacing:1px;
+      padding:0.3rem 0.6rem; border-radius:4px;
+      transition: background var(--transition), color var(--transition);
+    }
+    nav a:hover {
+      background: var(--accent); color: #fff;
+    }
+
+    /* ===== Section Styling ===== */
+    section {
+      padding:4rem 1rem; max-width:800px; margin:2rem auto;
+      background: var(--sec-bg); border-radius:8px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.5);
+    }
+    section + section {
+      border-top:1px solid rgba(255,255,255,0.1);
+      margin-top:0;
+    }
+    h2 {
+      font-family:'Pacifico', cursive; font-size:2rem;
+      color: var(--accent); margin-bottom:1rem; text-align:center;
+    }
+    p { margin-bottom:1rem; color: #ccc; font-size:1rem; }
+
+    /* ===== Gallery Slider ===== */
+    .slider-container { position:relative; overflow:hidden; }
+    .slide-track { display:flex; transition: transform 0.6s var(--transition); }
+    .slide { min-width:100%; padding:0 0.5rem; }
+    .slide img {
+      border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.5);
+      max-height:300px; object-fit:cover;
+    }
+    .arrow {
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:var(--sec-bg); border:none; color:var(--text);
+      padding:8px; cursor:pointer; border-radius:50%; font-size:1.2rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .arrow:hover { background:var(--accent); color:#fff; transform:scale(1.1); }
+    .arrow.left { left:1rem; }
+    .arrow.right { right:1rem; }
+    .dot-container { text-align:center; margin-top:1rem; }
+    .dot {
+      display:inline-block; width:10px; height:10px;
+      margin:0 5px; background:#555; border-radius:50%;
+      cursor:pointer; transition: background var(--transition);
+    }
+    .dot.active { background:var(--accent); }
+
+    /* ===== Flip Card ===== */
+    .flip-card { perspective:1000px; width:100%; max-width:300px; margin:2rem auto; }
+    .flip-card-inner {
+      position:relative; width:100%; padding-top:75%;
+      transform-style:preserve-3d; transition:transform 0.6s var(--transition);
+    }
+    .flip-card:hover .flip-card-inner { transform:rotateY(180deg); }
+    .flip-card-front, .flip-card-back {
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      backface-visibility:hidden; border-radius:8px; background:var(--sec-bg);
+      display:flex; align-items:center; justify-content:center; padding:1rem;
+      box-shadow:0 4px 12px rgba(0,0,0,0.5);
+      font-size:1rem; color:#fff;
+    }
+    .flip-card-back { transform:rotateY(180deg); font-family:'Pacifico', cursive; }
+
+    /* ===== Timeline ===== */
+    .timeline {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
+      gap:1rem; position:relative; padding:2rem 0;
+    }
+    .timeline::before {
+      content:''; position:absolute; top:50%; left:5%; right:5%;
+      height:2px; background:#444;
+    }
+    .timeline-item {
+      position:relative; padding-top:1rem; text-align:center;
+      transition:transform var(--transition);
+    }
+    .timeline-item:hover { transform:translateY(-5px); }
+    .timeline-item::before {
+      content:''; position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:12px; height:12px; background:var(--accent);
+      border-radius:50%;
+    }
+    .timeline-label {
+      margin-top:1.2rem; color:#ccc; font-size:0.9rem;
+    }
+
+    /* ===== Lists ===== */
+    .food, .hobby, .entry {
+      background:var(--sec-bg); padding:1rem; border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.4); margin-top:1rem;
+      color:#fff; font-size:1rem;
+    }
+    .hobbies { display:flex; gap:1rem; flex-wrap:wrap; }
+
+    /* ===== Form ===== */
+    form {
+      display:flex; flex-direction:column; align-items:center;
+    }
+    input, textarea {
+      width:100%; max-width:400px; padding:0.8rem; margin:0.5rem 0;
+      border-radius:5px; border:1px solid #555; background:#222; color:#fff;
+    }
+    button {
+      background:var(--accent); color:#fff; border:none;
+      padding:0.8rem 1.5rem; border-radius:5px; cursor:pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    button:hover { background:var(--accent-dark); transform:translateY(-2px); }
+
+    /* ===== Falling Hearts/Bunga ===== */
+    .falling {
+      position:fixed; top:-20px; font-size:1.2rem;
+      animation:fall 6s linear infinite; pointer-events:none;
+    }
+    @keyframes fall {
+      to { transform:translateY(100vh) rotate(360deg); }
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align:center; padding:2rem 1rem; background:var(--sec-bg);
+      color:#777; font-size:0.9rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media(max-width:600px) {
+      section { padding:2rem 1rem; }
+      nav { gap:1rem; padding:0.8rem 0; }
+      .slider-container .slide img { max-height:200px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      
+
+    <!-- Galeri -->
+    <section id="gallery">
+      <h2>Galeri</h2>
+      <div class="slider-container">
+        <button class="arrow left" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="slide-track" id="slides">
+          <div class="slide"><img src="cindy1.jpg.jpeg" alt="Kenangan 1"></div>
+          <div class="slide"><img src="cindy2.jpg.jpeg" alt="Kenangan 2"></div>
+          <div class="slide"><img src="cindy3.jpg.jpeg" alt="Kenangan 3"></div>
+          <div class="slide"><img src="cindy4.jpg.jpeg" alt="Kenangan 4"></div>
+        </div>
+        <button class="arrow right" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+      <div class="dot-container" id="dots"></div>
+    </section>
+
+    <!-- Cerita Kita -->
+    <section id="story">
+      <h2>Tentang Kita</h2>
+      <p>kita memang sering berantem perihal ga jelas,tapi aku yakin kita selalu bersama sama sampe nanti.</p>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front"><p>"Bersamamu adalah rumah hatiku."</p></div>
+          <div class="flip-card-back"><p>"Setiap detik bersamamu tak tergantikan."</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section id="timeline">
+      <h2>Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-label">21 Mar 2025<br>Jadian</div></div>
+      </div>
+    </section>
+
+    <!-- Makanan Favorit -->
+    <section id="food">
+      <h2>Makanan Favorit</h2>
+      <div class="food">
+        <p><strong>Dhany:</strong> Suka makan ayam, terutama ayam bakar.</p>
+        <p><strong>Cindy:</strong> Suka makan dimsum mentai sampe kenyang.</p>
+      </div>
+    </section>
+
+    <!-- Hobi -->
+    <section id="hobbies">
+      <h2>Hobi</h2>
+      <div class="hobbies">
+        <div class="hobby">
+       
+          <div class="hobby">
+            <p><strong>Dhany:</strong> Futsal, dan bermain sepak bola mengisi waktu luangnya</p>
+          </div>
+          <div class="hobby">
+            <p><strong>Cindy:</strong> Gym, Agar badanya sehat dan terlihat seksi.</p>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Formulir Kontak -->
+      <section id="contact">
+        <h2>Hubungi Kami</h2>
+        <form action="#" method="POST">
+          <input type="text" placeholder="Nama Anda" required />
+          <input type="email" placeholder="Email Anda" required />
+          <textarea placeholder="Pesan Anda" rows="4" required></textarea>
+          <button type="submit">Kirim Pesan</button>
+        </form>
+      </section>
+    </main>
+  
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Dhany & Cindy. Semua hak cipta dilindungi.</p>
+    </footer>
+  
+    <script>
+      // JavaScript untuk slider galeri
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+      const totalSlides = slides.length;
+      const dotsContainer = document.getElementById('dots');
+  
+      // Membuat dot navigasi
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        dot.addEventListener('click', () => moveToSlide(i));
+        dotsContainer.appendChild(dot);
+      }
+  
+      // Update slider
+      function updateSlider() {
+        const slideTrack = document.getElementById('slides');
+        const dots = document.querySelectorAll('.dot');
+        slideTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[currentSlide].classList.add('active');
+      }
+  
+      // Pindah ke slide tertentu
+      function moveToSlide(index) {
+        currentSlide = index;
+        updateSlider();
+      }
+  
+      // Pindah ke slide sebelumnya/selanjutnya
+      function moveSlide(direction) {
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+        updateSlider();
+      }
+  
+      updateSlider(); // Inisialisasi
+    </script>
+  </body>
+  </html>
+  
